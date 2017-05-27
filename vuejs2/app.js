@@ -3,13 +3,12 @@ document.addEventListener('DOMContentLoaded', function () {
         el: '#app',
         data: {
             title: 'A new world',
-            link: 'http://google.com'
+            link: 'http://google.com',
+            finishedLink: '<a href="http://google.com">Google</a>'
         },
         methods: {
-            changeTitle: function (event) {
-                this.title = event.target.value;
-            },
             sayHello: function () {
+                this.title = 'Hello!';
                 return this.title;
             }
         }
