@@ -12,22 +12,9 @@
 <body>
     <div id="app">
         <input type="text" v-on:input="changeTitle">
-        <p>
-            {{title}}
-        </p>
+        <p>{{sayHello()}} - <a v-bind:href="link">Google</a></p>
     </div>
-    <script>
-        new Vue({
-            el: '#app',
-            data: {
-                title: 'Hello World!'
-            },
-            methods: {
-                changeTitle: function (event) {
-                    this.title = event.target.value;
-                }
-            }
-        })
+    <script src="app.js">
     </script>
 </body>
 
