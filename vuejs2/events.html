@@ -18,9 +18,11 @@
         <!--Native event object is accessible thru any v-on binding-->
         <p v-on:mousemove="updateCoordinates">Coordinates: {{x}} / {{y}}</p> - 
         <!--Custom function to prevent event propagation-->
-        <span v-on:mousemove="dummy">DEAD SPOT</span>
-        <!--ALTERNATIVE: Use Vue's built-in `stop` method-->
+        <!--<span v-on:mousemove="dummy">DEAD SPOT</span>-->
+        <!--ALTERNATIVE: Use Vue's built-in `stop` method. Can be chained-->
         <span v-on:mousemove.stop.prevent>DEAD SPOT</span>
+        <!--Key modifier: `.enter` listens only for specific key presses. Can be chained-->
+        <input type="text" name="example" v-on:keyup.enter.space="alertMe">
     </div>
 
     <script src="events.js">

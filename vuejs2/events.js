@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
             dummy: function(event) {
                 // Call native methods available on event object directly
                 event.stopPropagation();
+            },
+            alertMe: function() {
+                console.log('Alert!');
             }
         }
     });
