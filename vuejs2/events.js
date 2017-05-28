@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // Native event object is accessible thru any v-on binding
                 this.x = event.clientX;
                 this.y = event.clientY;
+            },
+            dummy: function(event) {
+                // Call native methods available on event object directly
+                event.stopPropagation();
             }
         }
     });
