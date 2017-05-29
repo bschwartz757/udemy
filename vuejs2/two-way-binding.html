@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Two-Way Binding</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!--Two way data binding: `model` is used to bind whichever data value we specify.
+        It will automatically update all instances of this property in our app when 
+        changed-->
+        <input type="text" v-model="name">
+        <p>{{name}}</p>
+    </div>
+
+    <script src="two-way-binding.js">
+    </script>
+</body>
+
+</html>

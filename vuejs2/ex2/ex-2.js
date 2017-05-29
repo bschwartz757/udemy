@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         methods: {
             showAlert: function (event) {
-                console.log(event);
                 alert(`${event.target.outerHTML} was clicked!`);
             },
             updateValue: function (event) {
