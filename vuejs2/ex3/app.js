@@ -1,19 +1,21 @@
-'use strict';
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('loaded!');
     new Vue({
         el: '#exercise',
         data: {
-            value: ''
+            value: 0
         },
-        methods: {
-            showAlert: function (event) {
-                alert(`${event.target.outerHTML} was clicked!`);
-            },
-            updateValue: function (event) {
-                this.value = event.target.value;
+        computed: {
+            result() {
+                return this.value === 37 ? 'Done' : 'Not there yet';
+            }
+        },
+        watch: {
+            result() {
+                var vl = this;
+                setTimeout(function() {
+                    vl.value = 0;
+                }, 5000);
             }
         }
     });
-
 });

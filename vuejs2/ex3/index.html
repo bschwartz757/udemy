@@ -1,37 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+<script src="https://npmcdn.com/vue/dist/vue.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Events Assignment</title>
-    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
-</head>
+<div id="exercise">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<body>
+    <head>
+        <title>Computed Props Assignment</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    </head>
 
-    <div id="exercise">
-        <!-- 1) Show an alert when the Button gets clicked -->
-        <div>
-            <button v-on:click="showAlert($event)">Show Alert</button>
+    <body>
+
+        <!-- 1) Show a "result" of 'not there yet' as long as "value" is not equal to 37 - you can change "value" with the buttons. Print 'done' once you did it -->
+        <div id="exercise">
+            <p>Current Value: {{ value }}</p>
+            <button @click="value += 5">Add 5</button>
+            <button @click="value += 1">Add 1</button>
+            <p>{{ result }}</p>
         </div>
-        <!-- 2) Listen to the "keydown" event and store the value in a data property (hint: event.target.value gives you the value) -->
+        <!-- 2) Watch for changes in the "result" and reset the "value" after 5 seconds (hint: setTimeout(..., 5000) -->
         <div>
-            <input type="text" v-on:keydown="updateValue($event)">
-            <!--AUTHOR'S SOLUTION: Doesn't require custom methods-->
-            <input type="text" v-on:keydown="value = $event.target.value">
+            <input type="text">
             <p>{{ value }}</p>
         </div>
-        <!-- 3) Adjust the example from 2) to only fire if the "key down" is the ENTER key -->
-        <div>
-            <input type="text" v-on:keydown.enter="updateValue($event)">
-            <!--AUTHOR'S SOLUTION: Doesn't require custom methods-->
-            <input type="text" v-on:keydown.enter="value = $event.target.value">
-            <p>{{ value }}</p>
-        </div>
-    </div>
-    <script src="ex-2.js"></script>
+</div>
+<script src="app.js"></script>
 </body>
 
 </html>
