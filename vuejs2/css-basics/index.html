@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dynamic CSS</title>
+    <script src="../vue.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <!--:class expects an object, the key value needs '' if it contains a dash or other special char-->
+        <div class="demo" @click="attachRed = !attachRed" :class="divClasses"></div>
+        <!--can add the :class to other el's to update based on first el's click handler-->
+        <div class="demo" :class="{red: attachRed}"></div>
+        <!--can pass an array of classes that will be merged together in the vue instance-->
+        <div class="demo" :class="[color, {red: attachRed}]"></div>
+        <hr>
+        <input type="text" v-model="color">
+    </div>
+
+    <script src="app.js">
+    </script>
+</body>
+
+</html>

@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
     new Vue({
         el: '#exercise',
         data: {
-            value: 0
+            value: 0,
+            duration: 0
         },
         computed: {
             result() {
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 var vl = this;
                 setTimeout(function() {
                     vl.value = 0;
-                }, 5000);
+                }, vl.duration);
             }
         }
     });
