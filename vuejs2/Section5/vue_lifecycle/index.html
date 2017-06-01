@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Instance Lifecycle</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+  <div id="app">
+    <h1>{{ title }}</h1>
+    <!--This will only call the beforeUpdate() and updated() events
+    once - doesn't call them again on subsequent clicks (because 
+    nothing has changed) - better for performance-->
+    <button @click="title = 'Changed'">Update Title</button>
+    <!--Destroy() detaches all Vue bindings to the DOM, so clicks on
+    'update' button won't be recognized-->
+    <button @click="destroy">Destroy</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

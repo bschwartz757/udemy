@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Working with the Vue Instance</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+  <!--DOM Updating: Vue uses a virtual DOM to watch for changes and efficiently 
+  update the real DOM when necessary.-->
+
+  <div id="app1">
+    <!--Ref: Vue selector (accessible through $refs)-->
+    <h1 ref="heading">{{ title }}</h1>
+    <button v-on:click="show" ref="myButton">Show Paragraph</button>
+    <p v-if="showParagraph">This is not always visible</p>
+  </div>
+
+  <!--Second instance - totally separate from the first-->
+  <div id="app2">
+    <h1 ref="heading">{{ title }}</h1>
+    <button @click="onChange">Change something in Vue1 instance</button>
+    <!--Using the 'hello' component from app.js, obviously not a real HTML tag;
+    Vue will replace it with the html we specify in the component 'template' property-->
+    <hello></hello>
+    <hello></hello>
+  </div>
+
+  <div id="app3">
+
+  </div>
+
+
+  <script src="app.js"></script>
+</body>
+
+</html>
