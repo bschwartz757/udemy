@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rendering Lists: v-for</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!--Looping through an array (of objects)-->
+            <!--i refers to the index within the loop-->
+            <!--Ordering: vue updates the list when a value changes, but doesn't keep track of specific
+            elements within lists (by default.) Using v-bind:key tells vue to keep track of both the element's
+            position and the element itself within the array-->
+            <li v-for="(ingredient, i) in ingredients" :key="ingredient">{{ ingredient }} ({{ i }})</li>
+        </ul>
+        <button @click="ingredients.push('spices')">Add New</button>
+        <hr>
+        <ul>
+            <!--Looping through objects-->
+            <!--Similar to a for-in loop-->
+            <li v-for="person in persons">
+                <!--Access each value in the person object-->
+                <!--Access each key also. Order is important - value always
+                needs to come first-->
+                <!--Can even access index here-->
+                <div v-for="(value, key, index) in person">{{ key }}: {{ value }} ({{ index }})</div>
+            </li>
+        </ul>
+        <!--Looping through numbers - quick n convenient syntax-->
+        <!--`n` is not in our data object but we can use it here-->
+        <span v-for="n in 10">{{ n }}</span>
+        <hr>
+        <!--Alternative syntax-->
+        <template v-for="(ingredient, index) in ingredients">
+            <h1>{{ ingredient }}</h1>
+            <p>{{ index }}</p>
+        </template>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

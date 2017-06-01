@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Conditional Rendering: v-if & v-show</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!--if/else have expected behavior like any other template
+        language. Elements hidden conditionally are actually removed
+        from the DOM, not 'hidden'-->
+        <!--Nested elements are also affected-->
+        <p v-if="show">Visible! <span>Hi!</span></p>
+        <p v-else>Now you see me!</p>
+        <!--Alternative - using template html5 tag-->
+        <template v-if="show">
+            <p>Inside a template!</p>
+        </template>
+        <!--v-show doesn't detach the element from the DOM like v-if does.
+        Instead, the element gets 'style="display: none"'-->
+        <p v-show="show">Also visible?</p>
+        <button @click="show = !show">Switch</button>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
