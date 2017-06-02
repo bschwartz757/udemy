@@ -1,10 +1,11 @@
 <template>
+    <!--When making custom component tags, don't use typical HTML5 tag names (like <footer>)-->
     <div class="container">
-        <page-header></page-header>
+        <pageHeader></pageHeader>
         <hr>
         <div class="row">
             <server-list></server-list>
-            <server-details></server-details>
+            <serverDetails></serverDetails>
         </div>
         <hr>
         <page-footer></page-footer>
@@ -13,16 +14,18 @@
 
 <script>
 
-import Header from './Header.vue';
-import Footer from './Footer.vue';
-import ServerDetails from './ServerDetails.vue';
-import ServerList from './ServerList.vue';
+import Header from './components/shared/Header.vue';
+import Footer from './components/shared/Footer.vue';
+import ServerDetails from './components/server/ServerDetails.vue';
+import ServerList from './components/server/ServerList.vue';
 
 export default {
     components: {
-        'page-header': Header,
+        // We can also camel-case our keys
+        pageHeader: Header,
         'page-footer': Footer,
-        'server-details': ServerDetails,
+        // Also, using es6 we can do this:
+        ServerDetails,
         'server-list': ServerList
     }
 }
