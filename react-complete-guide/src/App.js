@@ -71,24 +71,6 @@ class App extends Component {
 						change={(event) => this.nameChangeHandler(event, person.id)}
 					/>
 				})}
-				{/*<Person
-					name={this.state.people[0].name}
-					age={this.state.people[0].age} />
-				<Person
-					name={this.state.people[1].name}
-					age={this.state.people[1].age} />
-				<Person
-					name={this.state.people[2].name}
-					age={this.state.people[2].age}
-					click={this.switchNameHandler.bind(this, 'Blakers')}
-					change={this.nameChangeHandler}>
-					Hobbies: barking
-				</Person>
-				<Person
-					name={this.state.people[3].name}
-					age={this.state.people[3].age}>
-					Hobbies: peeing
-				</Person>*/}
 			</div>
 			: null
 
