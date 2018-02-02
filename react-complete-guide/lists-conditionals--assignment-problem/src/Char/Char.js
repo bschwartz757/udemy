@@ -1,5 +1,5 @@
 import React from 'react'
-import './charComponent.css'
+import './char.css'
 
 const charComponent = (props) => {
 	return (

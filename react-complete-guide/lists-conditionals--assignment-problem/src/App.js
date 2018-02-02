@@ -1,48 +1,40 @@
 import React, { Component } from 'react';
 import './App.css';
 import Validation from './Validation/Validation'
-import CharComponent from './CharComponent/CharComponent';
+import Char from './Char/Char';
 class App extends Component {
 	state = {
-		chars: [],
-		word: ''
+		userInput: ''
 	}
-	addCharHandler = (value) => {
-		if (!value) return
-		const cloned = { ...this.state }
-		const newValue = value.split('').pop()
-		cloned.chars.push({ id: cloned.chars.length, value: newValue })
-		cloned.word = cloned.chars.map(char => char.value).join('')
-		console.log(`cloned: ${JSON.stringify(cloned, null, 2)}`)
-		this.setState(cloned)
+
+	inputChangeHandler = (event) => {
+		this.setState({ userInput: event.target.value })
 	}
-	removeCharHandler = (id) => {
-		const cloned = { ...this.state }
-		cloned.chars.splice(id, 1)
-		cloned.word = cloned.chars.map(char => char.value).join('')
-		console.log(`cloned: ${JSON.stringify(cloned, null, 2)}`)
-		this.setState(cloned)
+
+	removeCharHandler = (index) => {
+		const text = this.state.userInput.split('')
+		text.splice(index, 1)
+		const newText = text.join('')
+		this.setState({ userInput: newText })
 	}
+
 	render() {
-		const charList = <div>
-			{
-				(this.state.chars.length) ?
-					this.state.chars.map((char) => {
-						return <CharComponent
-							value={char.value}
-							click={() => this.removeCharHandler(char.id)}
-							key={char.id}
-						/>
-					})
-					: <span>No results to display</span>
-			}
-		</div>
-		const validationState = (this.state.chars.length >= 5) ? 'Text long enough' : 'Text too short'
+
+		const charList = this.state.userInput.split('').map((char, index) => {
+			return <Char
+				value={char}
+				click={() => this.removeCharHandler(index)}
+				key={index}
+			/>
+		})
+
 		return (
 			<div className="App">
-				<input type="text" onChange={(event) => this.addCharHandler(event.target.value)} defaultValue={this.state.word} />
-				<Validation isValid={validationState} />
-				{charList}
+				<input type="text" onChange={this.inputChangeHandler} value={this.state.userInput} />
+				<Validation inputLength={this.state.userInput.length} />
+				<div>
+					{charList}
+				</div>
 			</div>
 		);
 	}
