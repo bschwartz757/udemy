@@ -1,7 +1,7 @@
 import React, {
 	Component
 } from 'react';
-import './App.css';
+import styles from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -52,20 +52,10 @@ class App extends Component {
 
 	render() {
 
-		const style = {
-			backgroundColor: 'green',
-			color: 'white',
-			font: 'inherit',
-			border: '1px solid blue',
-			padding: '8px',
-			cursor: 'pointer'
-		}
-
 		let showList
+		let btnClass = ''
+
 		if (this.state.showPeople) {
-
-			style.backgroundColor = 'red'
-
 			showList = <div>
 				{this.state.people.map((person, index) => {
 					return <Person
@@ -77,23 +67,24 @@ class App extends Component {
 					/>
 				})}
 			</div>
+			btnClass = styles.Red
 		}
 
 		const pClasses = []
 		if (this.state.people.length <= 2) {
-			pClasses.push('red')
+			pClasses.push(styles.red)
 		}
 		if (this.state.people.length <= 1) {
-			pClasses.push('bold')
+			pClasses.push(styles.bold)
 		}
 
 		return (
-			<div className="App">
+			<div className={styles.App}>
 				<h1>Hello from React!</h1>
 				<p className={pClasses.join(' ')}>Wow this really works!</p>
 				<button
-					onClick={this.toggleListHandler}
-					style={style}>
+					className={btnClass}
+					onClick={this.toggleListHandler}>
 					Toggle List
 			</button>
 				{showList}
