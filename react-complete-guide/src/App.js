@@ -2,7 +2,6 @@ import React, {
 	Component
 } from 'react';
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -59,21 +58,13 @@ class App extends Component {
 			font: 'inherit',
 			border: '1px solid blue',
 			padding: '8px',
-			cursor: 'pointer',
-			':hover': {
-				backgroundColor: 'lightgreen',
-				color: 'black'
-			}
+			cursor: 'pointer'
 		}
 
 		let showList
 		if (this.state.showPeople) {
 
 			style.backgroundColor = 'red'
-			style[':hover'] = {
-				backgroundColor: 'salmon',
-				color: 'black'
-			}
 
 			showList = <div>
 				{this.state.people.map((person, index) => {
@@ -97,20 +88,18 @@ class App extends Component {
 		}
 
 		return (
-			<StyleRoot>
-				<div className="App">
-					<h1>Hello from React!</h1>
-					<p className={pClasses.join(' ')}>Wow this really works!</p>
-					<button
-						onClick={this.toggleListHandler}
-						style={style}>
-						Toggle List
+			<div className="App">
+				<h1>Hello from React!</h1>
+				<p className={pClasses.join(' ')}>Wow this really works!</p>
+				<button
+					onClick={this.toggleListHandler}
+					style={style}>
+					Toggle List
 			</button>
-					{showList}
-				</div>
-			</StyleRoot>
+				{showList}
+			</div>
 		);
 	}
 }
 
-export default Radium(App);
+export default App;
