@@ -2,6 +2,7 @@ import React, {
 	Component
 } from 'react';
 import './App.css';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -53,15 +54,28 @@ class App extends Component {
 	render() {
 
 		const style = {
-			backgroundColor: 'white',
+			backgroundColor: 'green',
+			color: 'white',
 			font: 'inherit',
 			border: '1px solid blue',
 			padding: '8px',
-			cursor: 'pointer'
+			cursor: 'pointer',
+			':hover': {
+				backgroundColor: 'lightgreen',
+				color: 'black'
+			}
 		}
 
-		let showList = (this.state.showPeople) ?
-			<div>
+		let showList
+		if (this.state.showPeople) {
+
+			style.backgroundColor = 'red'
+			style[':hover'] = {
+				backgroundColor: 'salmon',
+				color: 'black'
+			}
+
+			showList = <div>
 				{this.state.people.map((person, index) => {
 					return <Person
 						click={() => this.deletePersonHandler(index)}
@@ -71,40 +85,32 @@ class App extends Component {
 						change={(event) => this.nameChangeHandler(event, person.id)}
 					/>
 				})}
-				{/*<Person
-					name={this.state.people[0].name}
-					age={this.state.people[0].age} />
-				<Person
-					name={this.state.people[1].name}
-					age={this.state.people[1].age} />
-				<Person
-					name={this.state.people[2].name}
-					age={this.state.people[2].age}
-					click={this.switchNameHandler.bind(this, 'Blakers')}
-					change={this.nameChangeHandler}>
-					Hobbies: barking
-				</Person>
-				<Person
-					name={this.state.people[3].name}
-					age={this.state.people[3].age}>
-					Hobbies: peeing
-				</Person>*/}
 			</div>
-			: null
+		}
+
+		const pClasses = []
+		if (this.state.people.length <= 2) {
+			pClasses.push('red')
+		}
+		if (this.state.people.length <= 1) {
+			pClasses.push('bold')
+		}
 
 		return (
-			<div className="App">
-				<h1>Hello from React!</h1>
-				<p>Wow this really works!</p>
-				<button
-					onClick={this.toggleListHandler}
-					style={style}>
-					Toggle List
+			<StyleRoot>
+				<div className="App">
+					<h1>Hello from React!</h1>
+					<p className={pClasses.join(' ')}>Wow this really works!</p>
+					<button
+						onClick={this.toggleListHandler}
+						style={style}>
+						Toggle List
 			</button>
-				{showList}
-			</div>
+					{showList}
+				</div>
+			</StyleRoot>
 		);
 	}
 }
 
-export default App;
+export default Radium(App);
