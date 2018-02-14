@@ -2,8 +2,8 @@ import React, {
 	Component
 } from 'react';
 import styles from './App.css';
-import Person from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import People from '../components/People/People';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 	state = {
@@ -53,48 +53,22 @@ class App extends Component {
 
 	render() {
 
-		let showList
-		let btnClass = ''
-
-		const rand = Math.random()
-		if (rand > 0.7) {
-			throw new Error('foobar')
-		}
+		let peopleList
 
 		if (this.state.showPeople) {
-			showList = <div>
-				{this.state.people.map((person, index) => {
-					return <ErrorBoundary key={person.id}>
-						<Person
-							click={() => this.deletePersonHandler(index)}
-							name={person.name}
-							age={person.age}
-							change={(event) => this.nameChangeHandler(event, person.id)}
-						/>
-					</ErrorBoundary>
-				})}
-			</div>
-			btnClass = styles.Red
-		}
-
-		const pClasses = []
-		if (this.state.people.length <= 2) {
-			pClasses.push(styles.red)
-		}
-		if (this.state.people.length <= 1) {
-			pClasses.push(styles.bold)
+			peopleList = <People
+				people={this.state.people}
+				click={this.deletePersonHandler}
+				change={this.nameChangeHandler} />
 		}
 
 		return (
 			<div className={styles.App}>
-				<h1>Hello from React!</h1>
-				<p className={pClasses.join(' ')}>Wow this really works!</p>
-				<button
-					className={btnClass}
-					onClick={this.toggleListHandler}>
-					Toggle List
-			</button>
-				{showList}
+				<Cockpit
+					showPeople={this.state.showPeople}
+					people={this.state.people}
+					click={this.toggleListHandler} />
+				{peopleList}
 			</div>
 		);
 	}
