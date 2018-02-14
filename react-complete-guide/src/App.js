@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import styles from './App.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
 	state = {
@@ -55,16 +56,22 @@ class App extends Component {
 		let showList
 		let btnClass = ''
 
+		const rand = Math.random()
+		if (rand > 0.7) {
+			throw new Error('foobar')
+		}
+
 		if (this.state.showPeople) {
 			showList = <div>
 				{this.state.people.map((person, index) => {
-					return <Person
-						click={() => this.deletePersonHandler(index)}
-						name={person.name}
-						age={person.age}
-						key={person.id}
-						change={(event) => this.nameChangeHandler(event, person.id)}
-					/>
+					return <ErrorBoundary key={person.id}>
+						<Person
+							click={() => this.deletePersonHandler(index)}
+							name={person.name}
+							age={person.age}
+							change={(event) => this.nameChangeHandler(event, person.id)}
+						/>
+					</ErrorBoundary>
 				})}
 			</div>
 			btnClass = styles.Red
