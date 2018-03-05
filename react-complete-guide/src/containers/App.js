@@ -6,6 +6,19 @@ import People from '../components/People/People';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		console.log('[App.js] inside constructor', props)
+	}
+
+	componentWillMount() {
+		console.log('[App.js] inside componentWillMount')
+	}
+
+	componentDidMount() {
+		console.log('[App.js] inside componentDidMount')
+	}
+
 	state = {
 		people: [
 			{ id: 'asdf', name: "Blake", age: 35 },
@@ -52,7 +65,7 @@ class App extends Component {
 	}
 
 	render() {
-
+		console.log('[App.js] inside render()')
 		let peopleList
 
 		if (this.state.showPeople) {
@@ -65,6 +78,7 @@ class App extends Component {
 		return (
 			<div className={styles.App}>
 				<Cockpit
+					appTitle={this.props.title}
 					showPeople={this.state.showPeople}
 					people={this.state.people}
 					click={this.toggleListHandler} />
