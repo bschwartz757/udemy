@@ -4,6 +4,8 @@ import React, {
 import styles from './App.css';
 import People from '../components/People/People';
 import Cockpit from '../components/Cockpit/Cockpit';
+import Aux from '../hoc/Aux';
+import withClass from '../hoc/withClass'
 
 // PureComponent checks for shallow differences when updating components (the same behavior as shouldComponentUpdate)
 class App extends PureComponent {
@@ -17,7 +19,8 @@ class App extends PureComponent {
         { id: 'qtqert', name: "Tilly", age: 4 },
         { id: 'poiu', name: "Penny", age: 63 }
       ],
-      showPeople: false
+      showPeople: false,
+      toggleClickCounter: 0
     }
   }
 
@@ -75,7 +78,13 @@ class App extends PureComponent {
 
   toggleListHandler = () => {
     const show = this.state.showPeople
-    this.setState({ showPeople: !show })
+    this.setState((prevState, props) => {
+      return {
+        showPeople: !show,
+        toggleClickCounter: prevState.toggleClickCounter + 1
+      }
+
+    })
   }
 
   render() {
@@ -90,7 +99,7 @@ class App extends PureComponent {
     }
 
     return (
-      <div className={styles.App}>
+      <Aux>
         <button onClick={() => { this.setState({ showPeople: true }) }}>Show People</button>
         <Cockpit
           appTitle={this.props.title}
@@ -98,9 +107,9 @@ class App extends PureComponent {
           people={this.state.people}
           click={this.toggleListHandler} />
         {peopleList}
-      </div>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, styles.App);
