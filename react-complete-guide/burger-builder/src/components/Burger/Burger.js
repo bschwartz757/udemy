@@ -3,15 +3,21 @@ import styles from './Burger.css'
 import Ingredients from './Ingredients/Ingredients'
 
 const burger = (props) => {
-  console.log(props)
-  const ingredientList = Object.keys(props.ingredients)
+  // console.log(props)
+  let ingredientList = Object.keys(props.ingredients)
     .map(ing => {
       return [...Array(props.ingredients[ing])]
-        .map(v, t => { // eslint-disable-line
-          console.log(v)
+        .map((v, t) => {
           return <Ingredients key={ing + t} type={ing} />
         })
     })
+    .reduce((prev, curr) => {
+      return prev.concat(curr);
+    }, []);
+
+  if (!ingredientList.length) {
+    ingredientList = <p>Please add ingredients</p>
+  }
 
   return (
     <div className={styles.Burger}>
