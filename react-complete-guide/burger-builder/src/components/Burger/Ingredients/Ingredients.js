@@ -19,7 +19,9 @@ class Ingredients extends Component {
               <div className={styles.Bacon}></div> :
               (this.props.type === 'lettuce') ?
                 <div className={styles.Lettuce}></div> :
-                null
+                (this.props.type === 'tomato') ?
+                  <div className={styles.Tomato}></div> :
+                  null
     return ingredient
   }
 }
