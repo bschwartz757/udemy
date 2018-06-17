@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import Aux from '../../hoc/Aux'
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
+import Modal from '../../components/UI/Modal/Modal'
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
+
 
 const INGREDIENT_PRICES = {
   lettuce: 0.5,
@@ -21,7 +24,8 @@ class BurgerBuilder extends Component {
       tomato: 0
     },
     totalPrice: 4,
-    orderEnabled: false
+    orderEnabled: false,
+    confirmed: false
   }
 
   updateOrderState(ingredients) {
@@ -58,6 +62,22 @@ class BurgerBuilder extends Component {
     this.updateOrderState(updatedIngredients)
   }
 
+  confirmHandler = () => {
+    this.setState({
+      confirmed: true
+    })
+  }
+
+  dismissHandler = () => {
+    this.setState({
+      confirmed: false
+    })
+  }
+
+  continueHandler = () => {
+    alert('Continue!');
+  }
+
   render() {
     const disabledButtons = {}
     for (let key in this.state.ingredients) {
@@ -72,7 +92,17 @@ class BurgerBuilder extends Component {
           removeIngredient={this.removeIngredientHandler}
           disabled={disabledButtons}
           price={this.state.totalPrice}
-          orderable={this.state.orderEnabled} />
+          orderable={this.state.orderEnabled}
+          confirm={this.confirmHandler} />
+        <Modal
+          show={this.state.confirmed}
+          closeModal={this.dismissHandler}>
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            total={this.state.totalPrice}
+            continue={this.continueHandler}
+            cancel={this.dismissHandler} />
+        </Modal>
       </Aux>
     )
   }
